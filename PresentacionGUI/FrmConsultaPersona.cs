@@ -110,5 +110,15 @@ namespace PresentacionGUI
             var respuesta = personaService.ConsultarPorPalabra(txtNombre.Text);
             ValidarRespuestadeConsulta(respuesta);
         }
+
+        private void dgvPersonas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void cmbFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

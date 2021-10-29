@@ -47,18 +47,21 @@ namespace PresentacionGUI
             // dgvPersonas
             // 
             this.dgvPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPersonas.Location = new System.Drawing.Point(83, 230);
+            this.dgvPersonas.Location = new System.Drawing.Point(31, 96);
+            this.dgvPersonas.Margin = new System.Windows.Forms.Padding(1);
             this.dgvPersonas.Name = "dgvPersonas";
             this.dgvPersonas.RowHeadersWidth = 102;
             this.dgvPersonas.RowTemplate.Height = 40;
-            this.dgvPersonas.Size = new System.Drawing.Size(1760, 683);
+            this.dgvPersonas.Size = new System.Drawing.Size(660, 286);
             this.dgvPersonas.TabIndex = 0;
+            this.dgvPersonas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonas_CellContentClick);
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(968, 81);
+            this.btnConsultar.Location = new System.Drawing.Point(363, 34);
+            this.btnConsultar.Margin = new System.Windows.Forms.Padding(1);
             this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(266, 82);
+            this.btnConsultar.Size = new System.Drawing.Size(100, 34);
             this.btnConsultar.TabIndex = 1;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
@@ -72,16 +75,19 @@ namespace PresentacionGUI
             "Todos",
             "Mujeres",
             "Hombres"});
-            this.cmbFiltro.Location = new System.Drawing.Point(504, 67);
+            this.cmbFiltro.Location = new System.Drawing.Point(189, 28);
+            this.cmbFiltro.Margin = new System.Windows.Forms.Padding(1);
             this.cmbFiltro.Name = "cmbFiltro";
-            this.cmbFiltro.Size = new System.Drawing.Size(275, 39);
+            this.cmbFiltro.Size = new System.Drawing.Size(106, 21);
             this.cmbFiltro.TabIndex = 2;
+            this.cmbFiltro.SelectedIndexChanged += new System.EventHandler(this.cmbFiltro_SelectedIndexChanged);
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(504, 142);
+            this.txtNombre.Location = new System.Drawing.Point(189, 60);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(1);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(275, 38);
+            this.txtNombre.Size = new System.Drawing.Size(106, 20);
             this.txtNombre.TabIndex = 4;
             this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
@@ -89,74 +95,82 @@ namespace PresentacionGUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(269, 67);
+            this.label2.Location = new System.Drawing.Point(101, 28);
+            this.label2.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(202, 32);
+            this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Filtro Por Sexo";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(252, 148);
+            this.label3.Location = new System.Drawing.Point(94, 62);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(234, 32);
+            this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Filtro por Nombre";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 965);
+            this.label1.Location = new System.Drawing.Point(29, 405);
+            this.label1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(276, 32);
+            this.label1.Size = new System.Drawing.Size(104, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Conteo por Hombres";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(385, 965);
+            this.textBox1.Location = new System.Drawing.Point(144, 405);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(1);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(275, 38);
+            this.textBox1.Size = new System.Drawing.Size(106, 20);
             this.textBox1.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(90, 1032);
+            this.label4.Location = new System.Drawing.Point(34, 433);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(263, 32);
+            this.label4.Size = new System.Drawing.Size(99, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Conteo por Mujeres";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(385, 1032);
+            this.textBox2.Location = new System.Drawing.Point(144, 433);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(1);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(275, 38);
+            this.textBox2.Size = new System.Drawing.Size(106, 20);
             this.textBox2.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(175, 1095);
+            this.label5.Location = new System.Drawing.Point(66, 459);
+            this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(178, 32);
+            this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "Conteo Total";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(385, 1095);
+            this.textBox3.Location = new System.Drawing.Point(144, 459);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(1);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(275, 38);
+            this.textBox3.Size = new System.Drawing.Size(106, 20);
             this.textBox3.TabIndex = 11;
             // 
             // FrmConsultaPersona
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1937, 1156);
+            this.ClientSize = new System.Drawing.Size(722, 445);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label4);
@@ -169,6 +183,7 @@ namespace PresentacionGUI
             this.Controls.Add(this.cmbFiltro);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.dgvPersonas);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "FrmConsultaPersona";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta de Personas";
