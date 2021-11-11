@@ -15,7 +15,7 @@ namespace PresentacionGUI
         public FrmConsultaPersona()
         {
             InitializeComponent();
-            personaService = new PersonaService();
+            personaService = new PersonaService(ConfigConnection.cadenaConexion);
             ConfiguraionInicalGrid();
 
         }
@@ -109,6 +109,15 @@ namespace PresentacionGUI
         {
             var respuesta = personaService.ConsultarPorPalabra(txtNombre.Text);
             ValidarRespuestadeConsulta(respuesta);
+        }
+
+        private void FrmConsultaPersona_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'pulsacionG01DataSet.Persona' Puede moverla o quitarla según sea necesario.
+            this.personaTableAdapter1.Fill(this.pulsacionG01DataSet.Persona);
+            // TODO: esta línea de código carga datos en la tabla 'grupo02DataSet.Persona' Puede moverla o quitarla según sea necesario.
+            this.personaTableAdapter.Fill(this.grupo02DataSet.Persona);
+
         }
     }
 }

@@ -7,10 +7,11 @@ namespace Logica
     public class PersonaService
     {
         PersonaRepository personaRepository;
-        public PersonaService()
+        ConnectionManager connectionManager;
+        public PersonaService(string Cadena)
         {
-
-            personaRepository = new PersonaRepository();
+            connectionManager = new ConnectionManager(Cadena);
+            personaRepository = new PersonaRepository(connectionManager.Connection);
         }
         public string Guardar(Persona persona)
         {
@@ -18,7 +19,7 @@ namespace Logica
 
             try
             {
-
+                connectionManager.Open();
 
                 if (personaRepository.BuscarPorIdentificacion(persona.Identificacion) == null)
                 {
@@ -33,6 +34,7 @@ namespace Logica
 
                 return "Se presentó el siguiente error:" + exception.Message;
             }
+            finally { connectionManager.Close(); }
 
 
 
@@ -43,14 +45,14 @@ namespace Logica
         {
             try
             {
-
+                connectionManager.Open();
                 return new ConsultaResponse(personaRepository.Consultar());
             }
             catch (Exception exception)
             {
                 return new ConsultaResponse("Se presentó el siguiente error:" + exception.Message);
             }
-
+            finally { connectionManager.Close(); }
         }
 
         public string Eliminar(string identificacion)
@@ -58,7 +60,7 @@ namespace Logica
 
             try
             {
-
+                connectionManager.Open();
                 if (personaRepository.BuscarPorIdentificacion(identificacion) != null)
                 {
                     personaRepository.Eliminar(identificacion);
@@ -71,14 +73,14 @@ namespace Logica
 
                 return "Se presentó el siguiente error:" + exception.Message;
             }
-
+            finally { connectionManager.Close(); }
         }
         public string Modificar(Persona personaNueva, string identificacion)
         {
 
             try
             {
-
+                connectionManager.Open();
                 if (personaRepository.BuscarPorIdentificacion(identificacion) != null)
                 {
                     personaRepository.Modificar(personaNueva, identificacion);
@@ -91,12 +93,14 @@ namespace Logica
 
                 return "Se presentó el siguiente error:" + exception.Message;
             }
+            finally { connectionManager.Close(); }
 
         }
         public BusquedaReponse Buscar(string identificacion)
         {
             try
             {
+                connectionManager.Open();
 
                 return new BusquedaReponse(personaRepository.BuscarPorIdentificacion(identificacion));
             }
@@ -104,35 +108,35 @@ namespace Logica
             {
                 return new BusquedaReponse("Se presentó el siguiente error:" + exception.Message);
             }
-
+            finally { connectionManager.Close(); }
         }
 
         public ConsultaResponse ConsultarPorSexo(string sexo)
         {
             try
             {
-
+                connectionManager.Open();
                 return new ConsultaResponse(personaRepository.FiltrarPorSexo(sexo));
             }
             catch (Exception exception)
             {
                 return new ConsultaResponse("Se presentó el siguiente error:" + exception.Message);
             }
-
+            finally { connectionManager.Close(); }
         }
 
         public ConsultaResponse ConsultarPorPalabra(string palabra)
         {
             try
             {
-
+                connectionManager.Open();
                 return new ConsultaResponse(personaRepository.FiltrarPorPalabra(palabra));
             }
             catch (Exception exception)
             {
                 return new ConsultaResponse("Se presentó el siguiente error:" + exception.Message);
-            }
-
+            } 
+             finally { connectionManager.Close(); }
         }
 
 

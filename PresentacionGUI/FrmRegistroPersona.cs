@@ -22,7 +22,7 @@ namespace PresentacionGUI
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Persona persona = MapearPersona();
-            PersonaService personaService = new PersonaService();
+            PersonaService personaService = new PersonaService(ConfigConnection.cadenaConexion);
             string mensaje = personaService.Guardar(persona);
             MessageBox.Show(mensaje, "Guardar Persona", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
