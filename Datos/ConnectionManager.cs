@@ -11,6 +11,7 @@ namespace Datos
     public class ConnectionManager
     {
         public DbConnection Connection;
+
         public ConnectionManager(string connectionString)
         {
             Connection = new SqlConnection(connectionString);

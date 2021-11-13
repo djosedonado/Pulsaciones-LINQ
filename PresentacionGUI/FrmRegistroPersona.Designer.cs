@@ -149,7 +149,7 @@ namespace PresentacionGUI
             this.btnGuardar.Enabled = false;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGuardar.Location = new System.Drawing.Point(82, 400);
+            this.btnGuardar.Location = new System.Drawing.Point(78, 400);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(134, 90);
             this.btnGuardar.TabIndex = 11;

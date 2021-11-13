@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-
 namespace PresentacionGUI
 {
-    public static class ConfigConnection
+   public static class ConfigConnectionString
     {
-        public static string  cadenaConexion = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        public static string ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
     }
 }

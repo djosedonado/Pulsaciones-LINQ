@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace Datos
 {
-    public class PersonaRepository
+    public class PersonaRepositoryArchivo
     {
-        DbConnection _connection;
-        public PersonaRepository()
+    
+        public PersonaRepositoryArchivo()
         {
            
         }
@@ -28,23 +28,7 @@ namespace Datos
         public List<Persona> Consultar()
         {
             List<Persona> personas = new List<Persona>();
-            using (var command=_connection.CreateCommand())
-            {
-                command.CommandText = "Select * from persona";
-                var reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        Persona persona = new Persona();
-                        persona.Identificacion = (string)reader["Identificacion"];
-                        persona.Nombre = (string)reader["Nombre"];
-                        personas.Add(persona);
-                    }
-                    reader.Close();
-                }
-            }
-                
+            
             return personas;
         }
 

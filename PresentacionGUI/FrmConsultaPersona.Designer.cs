@@ -29,12 +29,9 @@ namespace PresentacionGUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dgvPersonas = new System.Windows.Forms.DataGridView();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.cmbFiltro = new System.Windows.Forms.ComboBox();
-            this.personaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.pulsacionG01DataSet = new PresentacionGUI.PulsacionG01DataSet();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,15 +41,7 @@ namespace PresentacionGUI
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.grupo02DataSet = new PresentacionGUI.Grupo02DataSet();
-            this.personaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.personaTableAdapter = new PresentacionGUI.Grupo02DataSetTableAdapters.PersonaTableAdapter();
-            this.personaTableAdapter1 = new PresentacionGUI.PulsacionG01DataSetTableAdapters.PersonaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personaBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pulsacionG01DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grupo02DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPersonas
@@ -77,24 +66,16 @@ namespace PresentacionGUI
             // 
             // cmbFiltro
             // 
-            this.cmbFiltro.DataSource = this.personaBindingSource1;
-            this.cmbFiltro.DisplayMember = "Sexo";
             this.cmbFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFiltro.FormattingEnabled = true;
+            this.cmbFiltro.Items.AddRange(new object[] {
+            "Todos",
+            "M",
+            "F"});
             this.cmbFiltro.Location = new System.Drawing.Point(504, 67);
             this.cmbFiltro.Name = "cmbFiltro";
             this.cmbFiltro.Size = new System.Drawing.Size(275, 39);
             this.cmbFiltro.TabIndex = 2;
-            // 
-            // personaBindingSource1
-            // 
-            this.personaBindingSource1.DataMember = "Persona";
-            this.personaBindingSource1.DataSource = this.pulsacionG01DataSet;
-            // 
-            // pulsacionG01DataSet
-            // 
-            this.pulsacionG01DataSet.DataSetName = "PulsacionG01DataSet";
-            this.pulsacionG01DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtNombre
             // 
@@ -171,24 +152,6 @@ namespace PresentacionGUI
             this.textBox3.Size = new System.Drawing.Size(275, 38);
             this.textBox3.TabIndex = 11;
             // 
-            // grupo02DataSet
-            // 
-            this.grupo02DataSet.DataSetName = "Grupo02DataSet";
-            this.grupo02DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // personaBindingSource
-            // 
-            this.personaBindingSource.DataMember = "Persona";
-            this.personaBindingSource.DataSource = this.grupo02DataSet;
-            // 
-            // personaTableAdapter
-            // 
-            this.personaTableAdapter.ClearBeforeFill = true;
-            // 
-            // personaTableAdapter1
-            // 
-            this.personaTableAdapter1.ClearBeforeFill = true;
-            // 
             // FrmConsultaPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -211,10 +174,6 @@ namespace PresentacionGUI
             this.Text = "Consulta de Personas";
             this.Load += new System.EventHandler(this.FrmConsultaPersona_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personaBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pulsacionG01DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grupo02DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.personaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,11 +193,5 @@ namespace PresentacionGUI
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox3;
-        private Grupo02DataSet grupo02DataSet;
-        private System.Windows.Forms.BindingSource personaBindingSource;
-        private Grupo02DataSetTableAdapters.PersonaTableAdapter personaTableAdapter;
-        private PulsacionG01DataSet pulsacionG01DataSet;
-        private System.Windows.Forms.BindingSource personaBindingSource1;
-        private PulsacionG01DataSetTableAdapters.PersonaTableAdapter personaTableAdapter1;
     }
 }
