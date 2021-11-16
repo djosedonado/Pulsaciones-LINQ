@@ -1,6 +1,8 @@
 ﻿using Entidad;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 
@@ -8,31 +10,47 @@ namespace Datos
 {
     public class PersonaRepository
     {
-
-
         string ruta = "Persona.txt";
-
+        DbConnection _connection;
+        public PersonaRepository(DbConnection connection)
+        {
+            _connection = connection;
+        }
+       
+        
         public void Guardar(Persona persona)
         {
-            FileStream file = new FileStream(ruta, FileMode.Append);
-            StreamWriter escritor = new StreamWriter(file);
-            escritor.WriteLine(persona.Escribir());
-            escritor.Close();
-            file.Close();
+            using (var command = _connection.CreateCommand())
+            {
+                command.CommandText = "insert into persona (Identificacion, Edad, Pulsacion , sexo, Nombre) values (@Identificacion, @Edad, @Pulsacion, @Sexo, @Nombre )";
+                command.Parameters.Add(new SqlParameter("@Identificacion", persona.Identificacion));
+                command.Parameters.Add(new SqlParameter("@Edad", persona.Edad));
+                command.Parameters.Add(new SqlParameter("@Pulsacion", persona.Pulsacion));
+                command.Parameters.Add(new SqlParameter("@Sexo", persona.Sexo));
+                command.Parameters.Add(new SqlParameter("@Nombre", persona.Nombre));
+                int fila=command.ExecuteNonQuery();
+               
+            }
         }
         public List<Persona> Consultar()
         {
             List<Persona> personas = new List<Persona>();
-            FileStream file = new FileStream(ruta, FileMode.OpenOrCreate);
-            StreamReader lector = new StreamReader(file);
-            string linea = "";
-            while ((linea = lector.ReadLine()) != null)
+            using (var command = _connection.CreateCommand())
             {
-                Persona persona = MapearPersona(linea);
-                personas.Add(persona);
+                command.CommandText = "select * from persona";
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Persona persona = new Persona();
+                    persona.Identificacion = reader.GetString(0);
+                    persona.Nombre = reader.GetString(1);
+                    persona.Sexo = reader["Sexo"].ToString();
+                    persona.Edad = reader.GetInt32(3);
+                    personas.Add(persona);
+                }
+                reader.Close();
             }
-            lector.Close();
-            file.Close();
+            
             return personas;
         }
 
@@ -50,47 +68,52 @@ namespace Datos
 
         public void Eliminar(string identificacion)
         {
-            List<Persona> personas = Consultar();
-            FileStream file = new FileStream(ruta, FileMode.Create);
-            file.Close();
-            foreach (var item in personas)
+            using (var command = _connection.CreateCommand())
             {
-                if (!item.Identificacion.Equals(identificacion))
-                {
-                    Guardar(item);
-                }
-            }
+                command.CommandText = "delete From Persona where Identificacion=@Identificacion";
+                command.Parameters.Add(new SqlParameter("@Identificacion", identificacion));
+                int fila = command.ExecuteNonQuery();
 
+            }
 
         }
 
         public void Modificar(Persona personaNuevo, string identificacion)
         {
-            List<Persona> personas = Consultar();
-            FileStream file = new FileStream(ruta, FileMode.Create);
-            file.Close();
-            foreach (var item in personas)
+            using (var command = _connection.CreateCommand())
             {
-                if (!item.Identificacion.Equals(identificacion))
-                {
-                    Guardar(item);
-                }
-                else
-                {
-                    Guardar(personaNuevo);
-                }
+                command.CommandText = "update persona set Nombre=@Nombre, Edad=@Edad,Sexo=@Sexo, pulsacion=@Pulsacion where Identificacion=@Identificacion";
+                command.Parameters.Add(new SqlParameter("@Identificacion", identificacion));
+                command.Parameters.Add(new SqlParameter("@Edad", personaNuevo.Edad));
+                command.Parameters.Add(new SqlParameter("@Pulsacion", personaNuevo.Pulsacion));
+                command.Parameters.Add(new SqlParameter("@Sexo", personaNuevo.Sexo));
+                command.Parameters.Add(new SqlParameter("@Nombre", personaNuevo.Nombre));
+                int fila = command.ExecuteNonQuery();
+
             }
         }
 
         public Persona BuscarPorIdentificacion(string identificacion)
         {
-
-            foreach (var item in Consultar())
+            using (var command = _connection.CreateCommand())
             {
-                if (item.Identificacion.Equals(identificacion))
+                command.CommandText = "select * from persona where Identificacion=@Identificaion";
+                command.Parameters.Add(new SqlParameter("@Identificacion", identificacion));
+                var reader = command.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    return item;
+                    while (reader.Read())
+                    {
+                        Persona persona = new Persona();
+                        persona.Identificacion = reader.GetString(0);
+                        persona.Nombre = reader.GetString(1);
+                        persona.Sexo = reader["Sexo"].ToString();
+                        persona.Edad = reader.GetInt32(3);
+                        return persona;
+                    }
                 }
+                
+                reader.Close();
             }
             return null;
         }
@@ -125,9 +148,9 @@ namespace Datos
         }
 
 
-        public List<Persona> FiltrarPorAnio(int year)
+        public List<Persona> FiltrarPorAnio(int year, int month)
         {
-            return Consultar().Where(p=>p.FechaNacimiento.Year>=year).ToList();
+            return Consultar().Where(p=>p.FechaNacimiento.Year==year && p.FechaNacimiento.Month== month).ToList();
         }
 
 

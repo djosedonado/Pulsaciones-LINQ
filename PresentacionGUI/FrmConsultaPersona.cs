@@ -15,7 +15,7 @@ namespace PresentacionGUI
         public FrmConsultaPersona()
         {
             InitializeComponent();
-            personaService = new PersonaService();
+            personaService = new PersonaService(ConfigConnectionString.ConnectionString);
             ConfiguraionInicalGrid();
 
         }
@@ -111,13 +111,9 @@ namespace PresentacionGUI
             ValidarRespuestadeConsulta(respuesta);
         }
 
-        private void dgvPersonas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void FrmConsultaPersona_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void cmbFiltro_SelectedIndexChanged(object sender, EventArgs e)
-        {
+           
 
         }
     }
